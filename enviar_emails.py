@@ -1,6 +1,7 @@
 import smtplib
 from email.message import EmailMessage
 import os
+import json
 
 def enviar_emails(senha, remetente, destinatarios, assunto, corpo_base, anexos, cargos_permitidos=None):
     erros_envio = []  # Lista para acumular falhas
@@ -61,7 +62,11 @@ def enviar_emails(senha, remetente, destinatarios, assunto, corpo_base, anexos, 
             smtp.login(remetente, senha)
             smtp.send_message(aviso)
 
-dic_base = os.getenv('dic_base')
-dic_email = os.getenv('dic_email')
+json_base = os.getenv('DIC_BASE')
+dic_base = json.loads(json_base)
+
+json_email = os.getenv('DIC_EMAIL')
+dic_email = json.loads(json_email)
 
 enviar_emails(**dic_base, **dic_email)
+enviar_emails(**dic_base, **dic_email, cargos_permitidos=['Diretor (a)'])
