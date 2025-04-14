@@ -68,5 +68,4 @@ dic_base = json.loads(json_base)
 json_email = os.getenv('DIC_EMAIL')
 dic_email = json.loads(json_email)
 
-enviar_emails(**dic_base, **dic_email)
 enviar_emails(**dic_base, **dic_email, cargos_permitidos=['Diretor (a)'])
