@@ -1,0 +1,29 @@
+name: Enviar Email
+
+on:
+  schedule:
+    - cron: '37 16 * * *'  # Segunda-feira às 17h UTC = 14h em Salvador
+  workflow_dispatch:  # Também permite execução manual
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run script
+        run: python seu_script.py
+        env:
+          DIC_BASE: ${{ secrets.DIC_BASE }}     # Dicionário com senha, remetente e destinatários
+          DIC_EMAIL: ${{ secrets.DIC_EMAIL }}   # Dicionário com assunto, corpo e anexos
