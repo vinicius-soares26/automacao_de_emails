@@ -2,7 +2,7 @@ name: Enviar Email
 
 on:
   schedule:
-    - cron: '00 17 * * *'  # Segunda-feira às 17h UTC = 14h em Salvador
+    - cron: '15 17 * * *'  # Segunda-feira às 17h UTC = 14h em Salvador
   workflow_dispatch:  # Também permite execução manual
 
 jobs:
